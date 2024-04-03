@@ -1,11 +1,13 @@
 from flask import Flask
+from models import db
 
-app=Flask(__name__)
+def create_app():
+    app = Flask(__name__)
+    with app.app_context():
+        import views
+    return app
 
-@app.route('/')
-
-def home():
-    return "Hello from Flask!"
+app = create_app()
 
 if __name__=='__main__':
     app.run(debug=True)
